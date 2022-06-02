@@ -45,8 +45,19 @@ public class arithmeticCalculatorServlet extends HttpServlet {
          getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
         return;
                }
-       int f = Integer.parseInt(fVal);
-       int s = Integer.parseInt(sVal);
+       int f = 0;
+       int s = 0;
+       try {
+       f = Integer.parseInt(fVal);
+       s = Integer.parseInt(sVal);
+       
+       } catch(Exception e){
+                  request.setAttribute("result", "Invalid");
+           
+         getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
+        return;
+       }
+       
        String act = request.getParameter("act");
        if (act == null) {
 //no button has been selected

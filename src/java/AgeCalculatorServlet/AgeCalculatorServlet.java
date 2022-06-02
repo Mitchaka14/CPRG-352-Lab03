@@ -44,11 +44,26 @@ public class AgeCalculatorServlet extends HttpServlet {
         return;
                }
        else {
-          int numof = Integer.parseInt(ageOf);
+                    
+      int numof = 0;
+           try{
+           numof = Integer.parseInt(ageOf);
           numof++;
-        request.setAttribute("emessage",("Your age next birthday will be "+ numof));
+           
+           }
+                   catch( Exception e){
+           String emessage = "Enter number";
+           request.setAttribute("emessage", emessage);
+           
+         getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response);
+          return;
+                           }
+           
+             request.setAttribute("emessage",("Your age next birthday will be "+ numof));
         
        getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response);
+           
+
        }
     }
 
